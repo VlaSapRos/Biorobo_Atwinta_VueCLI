@@ -22,9 +22,12 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0-0",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "typescript": "~3.9.3"
+    "typescript": "~3.9.3",
+    "vue-loader": "^15.9.3"
   },
   "browserslist": [
     "> 1%",

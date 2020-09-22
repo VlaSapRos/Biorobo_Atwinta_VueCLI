@@ -1,0 +1,80 @@
+@import "utils/vars";
+@import "utils/fonts";
+@import "style/svg.scss";
+@import "style/card.scss";
+@import "style/chekbox.scss";
+@import "style/buttons.scss";
+
+//*******************************
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat_regular';
+  color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+}
+
+.rubric {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  width: 754px;
+  height: 60px;
+  margin-bottom: 60px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.container_column {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.background {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1440px;
+  padding: 48px 212px 211px 212px;
+  margin: 0;
+  box-sizing: border-box;
+  background: radial-gradient(82.33% 70.44% at 50% 0%, #26394D 0%, #212529 100%);;
+}
+
+.block{
+  position: relative;
+  padding-left: 130px;
+  display: flex;
+  width: 884px;
+  flex-direction: column;
+}
+
+*, *:before, *:after { box-sizing: border-box; }
+
+h1, h2, h3, h4, h5, h6 { margin: 0; }
+
+a {
+	text-decoration: none;
+}
+
+ul, li, p {
+  margin: 0;
+  padding: 0;
+}
+
+button, 
+button:active, 
+button:focus {
+  outline: 0 !important;
+}
