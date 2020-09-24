@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
+import stock from './modules/stock'
 
 export default createStore({
   state: {
@@ -80,4 +80,7 @@ export default createStore({
       }
     },
   },
+  modules:{
+    stock,
+  }
 })
