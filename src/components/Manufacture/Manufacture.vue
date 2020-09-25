@@ -7,9 +7,9 @@
       ManufactureRadio(title='Стабилизатор:' name='gender' value1 = 'Male' value2 = 'Female' v-on:roboTypeChange='roboType.stabilizer=$event')
       button.button-create(:class="{active: isBeCreate}" :disabled='!isBeCreate' @click="createRobot()") Произвести за 10 монет
     .container_column.container_column_Manufacture(style='padding-top:9px')
-      ManufactureCheck( count='4' isBiomechanism='true' :stock="stockroom.biomechanisms" )
-      ManufactureCheck( count='4' isProcessor='true' :stock="stockroom.processors" )
-      ManufactureCheck( count='1' isSoul='true' :stock="stockroom.souls" )
+      ManufactureCheck( count='4' isBiomechanism='true' )
+      ManufactureCheck( count='4' isProcessor='true' )
+      ManufactureCheck( count='1' isSoul='true' )
       .Manufacture__not-enough {{ notEnough }}
     .container_column.container_column_Manufacture
       ManufactureSilhouette(:stabilizer='roboType.stabilizer' :type='roboType.type' :isBeCreate='isBeCreate')
@@ -23,12 +23,7 @@
   export default {
     data(){
       return {
-        costRobot: {
-          biomechanisms:4,
-          processors:4,
-          souls:1,
-          coins:10,
-        },
+        costRobot: 10,
         roboType:{
           stabilizer: 'Male',
           type: 'FrontEnd',
@@ -37,9 +32,9 @@
     },
     methods: {
       createRobot : function () {
-        if(this.costRobot.biomechanisms <= this.stockroom.biomechanisms
-          && this.costRobot.processors <= this.stockroom.processors
-          && this.costRobot.souls <= this.stockroom.souls) {
+        if(this.stock.biomechanism.need <= this.stock.biomechanism.quantity
+          && this.stock.processor.need <= this.stock.processor.quantity
+          && this.stock.soul.need <= this.stock.soul.quantity) {
             this.$emit('robotCreated');
             this.$store.commit('createRobot',this.costRobot);
           }
@@ -52,18 +47,18 @@
     },
     computed: {
       ...mapState([
-        'stockroom',
         'amountCoins',
         'flags',
+        'stock',
       ]),
       isBeCreate() {
         if (this.amountCoins >= 10 
-          && this.costRobot.biomechanisms == this.countBiomechanisms 
-          && this.costRobot.processors == this.countProcessors 
-          && this.costRobot.souls == this.countSouls
-          && this.costRobot.biomechanisms <= this.stockroom.biomechanisms 
-          && this.costRobot.processors <= this.stockroom.processors 
-          && this.costRobot.souls <= this.stockroom.souls) {
+          && this.stock.biomechanism.need == this.countBiomechanisms 
+          && this.stock.processor.need == this.countProcessors 
+          && this.stock.soul.need == this.countSouls
+          && this.stock.biomechanism.need <= this.stock.biomechanism.quantity 
+          && this.stock.processor.need <= this.stock.processor.quantity 
+          && this.stock.soul.need <= this.stock.soul.quantity) {
             return true
         }
         else { return false }

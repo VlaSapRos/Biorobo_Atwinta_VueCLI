@@ -20,5 +20,10 @@ export default {
       quantity:0,
       need:1,
     } as IDetails,
-  }
+  },
+  mutations:{
+    addBiomechanism(state:any){
+      state.biomechanism.quantity++
+    }
+  },
 }

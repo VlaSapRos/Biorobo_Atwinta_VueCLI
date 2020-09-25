@@ -3,24 +3,24 @@
   span.rubric Склад
   .container
     StockCard(
-      :quantity='stockroom.biomechanisms'
+      :quantity='stock.biomechanism.quantity'
       title='Биомеханизм'
-      :cost='cost.biomechanism'
-      v-on:sell="$store.commit('sellBiomechanism',stock.biomechanism.costOfSale); (stockroom.biomechanisms < 4) ? unSelectBiomechanismStock(stockroom.biomechanisms) : null"
+      :cost='stock.biomechanism.costOfSale'
+      v-on:sell="$store.commit('sellBiomechanism',stock.biomechanism.costOfSale); (stock.biomechanism.quantity < 4) ? unSelectBiomechanismStock(stock.biomechanism.quantity) : null"
       v-on:overHundred="$emit('overHundred')"
     )
     StockCard(
-      :quantity='stockroom.processors'
+      :quantity='stock.processor.quantity'
       title='Процессор'
-      :cost='cost.processor'
-      v-on:sell="$store.commit('sellProcessor',stock.processor.costOfSale); (stockroom.processors < 4) ? unSelectProcessorStock(stockroom.processors) : null"
+      :cost='stock.processor.costOfSale'
+      v-on:sell="$store.commit('sellProcessor',stock.processor.costOfSale); (stock.processor.quantity < 4) ? unSelectProcessorStock(stock.processor.quantity) : null"
       v-on:overHundred="$emit('overHundred')"
     )
     StockCard(
-      :quantity='stockroom.souls'
+      :quantity='stock.soul.quantity'
       title='Душа'
-      :cost='cost.soul'
-      v-on:sell="$store.commit('sellSoul',stock.soul.costOfSale); (stockroom.souls < 4) ? unSelectSoulStock(stockroom.souls) : null"
+      :cost='stock.soul.costOfSale'
+      v-on:sell="$store.commit('sellSoul',stock.soul.costOfSale); (stock.soul.quantity < 4) ? unSelectSoulStock(stock.soul.quantity) : null"
       v-on:overHundred="$emit('overHundred')"
     )
 </template>
@@ -29,18 +29,8 @@
   import { mapState } from 'vuex';
   import StockCardVue from "./StockCard.vue";
   export default {
-    data() {
-      return {
-        cost: {
-          biomechanism: 5,
-          processor: 3,
-          soul: 15,
-        }
-      }
-    },
     computed: {
       ...mapState([
-        'stockroom',
         'stock',
       ]),
     },
@@ -48,8 +38,8 @@
       'StockCard': StockCardVue,
     },
     methods: {
-      unSelectBiomechanismStock: function(stockroom) {
-        let difference = 4 - stockroom;
+      unSelectBiomechanismStock: function(quantity) {
+        let difference = 4 - quantity;
         switch (difference) {
           case 1 : this.$store.commit('unSelectedBiomechanism',3); break;
           case 2 : this.$store.commit('unSelectedBiomechanism',2); break;
@@ -57,8 +47,8 @@
           case 4 : this.$store.commit('unSelectedBiomechanism',0); break;
         }
       },
-      unSelectProcessorStock: function(stockroom) {
-        let difference = 4 - stockroom;
+      unSelectProcessorStock: function(quantity) {
+        let difference = 4 - quantity;
         switch (difference) {
           case 1 : this.$store.commit('unSelectedProcessor',3); break;
           case 2 : this.$store.commit('unSelectedProcessor',2); break;
@@ -66,8 +56,8 @@
           case 4 : this.$store.commit('unSelectedProcessor',0); break;
         }
       },
-      unSelectSoulStock: function(stockroom) {
-        let difference = 4 - stockroom;
+      unSelectSoulStock: function(quantity) {
+        let difference = 4 - quantity;
         switch (difference) {
           case 1 : this.$store.commit('unSelectedSoul',3); break;
           case 2 : this.$store.commit('unSelectedSoul',2); break;

@@ -3,11 +3,11 @@
   class="checkbox"
   v-bind:class='{ checkbox_active:( flags.biomechanism[number-1] ) }'
   @click="$store.commit((flags.biomechanism[number-1]) ? 'unSelectedBiomechanism' : 'selectedBiomechanism',number-1)"
-  :disabled='+stockroom.biomechanisms<+number'
+  :disabled='+stock.biomechanism.quantity<+number'
 >
   <svg 
     class='fill-gray' 
-    v-bind:class='{"fill-white":+stockroom.biomechanisms>=+number, "fill-orange":(flags.biomechanism[number-1] && +stockroom.biomechanisms>=+number)}'
+    v-bind:class='{"fill-white":+stock.biomechanism.quantity>=+number, "fill-orange":(flags.biomechanism[number-1] && +stock.biomechanism.quantity>=+number)}'
     width="36" 
     height="24" 
     viewBox="0 0 36 24" 
@@ -27,7 +27,7 @@
   export default {
     computed: {
       ...mapState([
-        'stockroom',
+        'stock',
         'flags'
       ]),
     },

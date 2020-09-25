@@ -3,11 +3,11 @@
   class="checkbox"
   v-bind:class='{ checkbox_active:( flags.processor[number-1] ) }'
   @click="$store.commit((flags.processor[number-1]) ? 'unSelectedProcessor' : 'selectedProcessor',number-1)"
-  :disabled='+stockroom.processors<+number'
+  :disabled='+stock.processor.quantity<+number'
 >
   <svg 
     class='fill-gray' 
-    v-bind:class='{"fill-white":+stockroom.processors>=+number, "fill-orange":(flags.processor[number-1] && +stockroom.processors>=+number), }' 
+    v-bind:class='{"fill-white":+stock.processor.quantity>=+number, "fill-orange":(flags.processor[number-1] && +stock.processor.quantity>=+number), }' 
     width="24" 
     height="24" 
     viewBox="0 0 24 24" 
@@ -29,7 +29,7 @@
   export default {
     computed: {
       ...mapState([
-        'stockroom',
+        'stock',
         'flags',
       ]),
     },

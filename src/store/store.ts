@@ -6,11 +6,6 @@ import stock from './modules/stock'
 export default createStore({
   state: {
     amountCoins: 0,
-    stockroom: {
-      biomechanisms: 0,
-      processors: 0,
-      souls: 0,
-    },
     robotIsCreated: false,
     flags:{
       biomechanism: [false,false,false,false],
@@ -23,34 +18,34 @@ export default createStore({
       state.amountCoins += count;
     },
     buyBiomechanism (state,cost) {
-      state.stockroom.biomechanisms++;
+      stock.state.biomechanism.quantity++;
       state.amountCoins -= cost;
     },
     buyProcessor (state,cost) {
-      state.stockroom.processors++;
+      stock.state.processor.quantity++;
       state.amountCoins -= cost;
     },
     buySoul (state,cost) {
-      state.stockroom.souls++;
+      stock.state.soul.quantity++;
       state.amountCoins -= cost;
     },
     sellBiomechanism (state,cost) {
-      state.stockroom.biomechanisms--;
+      stock.state.biomechanism.quantity--;
       state.amountCoins += cost;
     },
     sellProcessor (state,cost) {
-      state.stockroom.processors--;
+      stock.state.processor.quantity--;
       state.amountCoins += cost;
     },
     sellSoul (state,cost) {
-      state.stockroom.souls--;
+      stock.state.soul.quantity--;
       state.amountCoins += cost;
     },
     createRobot (state, costRobots) {
-      state.amountCoins -= +costRobots.coins;
-      state.stockroom.biomechanisms -= costRobots.biomechanisms;
-      state.stockroom.processors -= costRobots.processors;
-      state.stockroom.souls -= costRobots.souls;
+      state.amountCoins -= costRobots;
+      stock.state.biomechanism.quantity -= stock.state.biomechanism.need;
+      stock.state.processor.quantity -= stock.state.processor.need;
+      stock.state.soul.quantity -= stock.state.soul.need;
       state.robotIsCreated = true;
     },
     // selectedBiomechanism (state, index) {

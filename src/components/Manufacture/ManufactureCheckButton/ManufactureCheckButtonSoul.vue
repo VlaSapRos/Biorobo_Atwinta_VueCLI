@@ -3,11 +3,11 @@
   class="checkbox"
   v-bind:class='{ checkbox_active:( flags.soul[number-1] ) }'
   @click="$store.commit((flags.soul[number-1]) ? 'unSelectedSoul' : 'selectedSoul',number-1)"
-  :disabled='+stockroom.souls<+number'
+  :disabled='+stock.soul.quantity<+number'
 >
   <svg 
     class='fill-gray' 
-    v-bind:class='{"fill-white":+stockroom.souls>=+number, "fill-orange":(flags.soul[number-1] && +stockroom.souls>=+number), }' 
+    v-bind:class='{"fill-white":+stock.soul.quantity>=+number, "fill-orange":(flags.soul[number-1] && +stock.soul.quantity>=+number), }' 
     width="32" 
     height="32" 
     viewBox="0 0 32 32" 
@@ -37,7 +37,7 @@
   export default {
     computed: {
       ...mapState([
-        'stockroom',
+        'stock',
         'flags'
       ]),
     },

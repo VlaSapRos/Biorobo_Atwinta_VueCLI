@@ -1,11 +1,21 @@
 <template>
-  <div id="nav">
+  <Main/>
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/main">Main</router-link>
   </div>
-  <router-view/>
+  <router-view/> -->
 </template>
+
+<script>
+import MainVue from './views/Main.vue'
+export default {
+  components: {
+    'Main': MainVue
+  }
+}
+</script>
 
 <style lang="scss">
 #nav {
