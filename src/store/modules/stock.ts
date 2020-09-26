@@ -24,6 +24,21 @@ export default {
   mutations:{
     addBiomechanism(state:any){
       state.biomechanism.quantity++
-    }
+    },
+    addProcessor(state:any){
+      state.processor.quantity++
+    },
+    addSoul(state:any){
+      state.soul.quantity++
+    },
+    removeBiomechanism(state:any){
+      state.biomechanism.quantity--
+    },
+    removeProcessor(state:any){
+      state.processor.quantity--
+    },
+    removeSoul(state:any){
+      state.soul.quantity--
+    },
   },
 }

@@ -13,33 +13,41 @@ export default createStore({
       soul: [false,false,false,false],
     } 
   },
+  actions: {
+    buyBiomechanism(context) {
+      context.commit('buy', stock.state.biomechanism.cost)
+      context.commit('addBiomechanism')
+    },
+    buyProcessor(context) {
+      context.commit('buy', stock.state.processor.cost)
+      context.commit('addProcessor')
+    },
+    buySoul(context) {
+      context.commit('buy', stock.state.soul.cost)
+      context.commit('addSoul')
+    },
+    sellBiomechanism(context) {
+      context.commit('sell', stock.state.biomechanism.costOfSale)
+      context.commit('removeBiomechanism')
+    },
+    sellProcessor(context) {
+      context.commit('sell', stock.state.processor.costOfSale)
+      context.commit('removeProcessor')
+    },
+    sellSoul(context) {
+      context.commit('sell', stock.state.soul.costOfSale)
+      context.commit('removeSoul')
+    },
+  },
   mutations: {
+    buy(state, cost){
+      state.amountCoins -= cost;
+    },
+    sell(state, cost){
+      state.amountCoins += cost;
+    },
     addCoins (state, count) {
       state.amountCoins += count;
-    },
-    buyBiomechanism (state,cost) {
-      stock.state.biomechanism.quantity++;
-      state.amountCoins -= cost;
-    },
-    buyProcessor (state,cost) {
-      stock.state.processor.quantity++;
-      state.amountCoins -= cost;
-    },
-    buySoul (state,cost) {
-      stock.state.soul.quantity++;
-      state.amountCoins -= cost;
-    },
-    sellBiomechanism (state,cost) {
-      stock.state.biomechanism.quantity--;
-      state.amountCoins += cost;
-    },
-    sellProcessor (state,cost) {
-      stock.state.processor.quantity--;
-      state.amountCoins += cost;
-    },
-    sellSoul (state,cost) {
-      stock.state.soul.quantity--;
-      state.amountCoins += cost;
     },
     createRobot (state, costRobots) {
       state.amountCoins -= costRobots;
@@ -48,24 +56,24 @@ export default createStore({
       stock.state.soul.quantity -= stock.state.soul.need;
       state.robotIsCreated = true;
     },
-    // selectedBiomechanism (state, index) {
-    //   Vue.set(state.flags.biomechanism, index, true)
-    // },
-    // unSelectedBiomechanism (state, index) {
-    //   Vue.set(state.flags.biomechanism, index, false)
-    // },
-    // selectedProcessor (state, index) {
-    //   Vue.set(state.flags.processor, index, true)
-    // },
-    // unSelectedProcessor (state, index) {
-    //   Vue.set(state.flags.processor, index, false)
-    // },
-    // selectedSoul (state, index) {
-    //   Vue.set(state.flags.soul, index, true)
-    // },
-    // unSelectedSoul (state, index) {
-    //   Vue.set(state.flags.soul, index, false)
-    // },
+    selectedBiomechanism (state, index) {
+      Vue.set(state.flags.biomechanism, index, true)
+    },
+    unSelectedBiomechanism (state, index) {
+      Vue.set(state.flags.biomechanism, index, false)
+    },
+    selectedProcessor (state, index) {
+      Vue.set(state.flags.processor, index, true)
+    },
+    unSelectedProcessor (state, index) {
+      Vue.set(state.flags.processor, index, false)
+    },
+    selectedSoul (state, index) {
+      Vue.set(state.flags.soul, index, true)
+    },
+    unSelectedSoul (state, index) {
+      Vue.set(state.flags.soul, index, false)
+    },
     reset (state) {
       state.robotIsCreated = false;
       state.flags = {
