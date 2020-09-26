@@ -23,7 +23,6 @@
   export default {
     data(){
       return {
-        costRobot: 10,
         roboType:{
           stabilizer: 'Male',
           type: 'FrontEnd',
@@ -36,7 +35,7 @@
           && this.stock.processor.need <= this.stock.processor.quantity
           && this.stock.soul.need <= this.stock.soul.quantity) {
             this.$emit('robotCreated');
-            this.$store.commit('createRobot',this.costRobot);
+            this.$store.dispatch('buildRobot');
           }
       },
     },
@@ -50,6 +49,7 @@
         'amountCoins',
         'flags',
         'stock',
+        'costRobot',
       ]),
       isBeCreate() {
         if (this.amountCoins >= 10 
@@ -90,12 +90,12 @@
         let part2 = '';
         let part3 = '';
         let part4 = '';
-        let forIf = this.amountCoins < 10 || this.costRobot.biomechanisms !== this.countBiomechanisms || this.costRobot.processors !== this.countProcessors || this.costRobot.souls !== this.countSouls
+        let forIf = this.amountCoins < this.costRobot || this.stock.biomechanism.need !== this.countBiomechanisms || this.stock.processor.need !== this.countProcessors || this.stock.soul.need !== this.countSouls;
         if (forIf) {
-          let biomech = this.costRobot.biomechanisms-this.countBiomechanisms 
-          let procc = this.costRobot.processors-this.countProcessors 
-          let sou = this.costRobot.souls-this.countSouls 
-          let co = this.costRobot.coins - this.amountCoins 
+          let biomech = this.stock.biomechanism.need - this.countBiomechanisms 
+          let procc = this.stock.processor.need - this.countProcessors 
+          let sou = this.stock.soul.need  - this.countSouls 
+          let co = this.costRobot - this.amountCoins 
           if (biomech == 1) {part1 = ' биомеханизма'}
           else if (biomech == 0) {part1 = ''}
           else {part1 = ` ${biomech} биомеханизмов`}

@@ -31,14 +31,14 @@ export default {
     addSoul(state:any){
       state.soul.quantity++
     },
-    removeBiomechanism(state:any){
-      state.biomechanism.quantity--
+    removeBiomechanism(state:any, amount:number){
+      state.biomechanism.quantity -= amount;
     },
-    removeProcessor(state:any){
-      state.processor.quantity--
+    removeProcessor(state:any, amount:number){
+      state.processor.quantity -= amount;
     },
-    removeSoul(state:any){
-      state.soul.quantity--
+    removeSoul(state:any, amount:number){
+      state.soul.quantity -= amount;
     },
   },
 }
