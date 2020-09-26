@@ -7,6 +7,7 @@
   Market
   Stock(v-on:overHundred="modalTrue('Количество монет ограничено', 'Вы не можете нацыганить', 'более 100 монет biorobo', '/assets/img/coin/bigCoin.svg')")
   Manufacture(v-on:robotCreated="modalTrue('Биоробот произведён', 'Поздравляем!', 'Вы произвели биоробота', '')")
+  Example
 </template>
 
 <script>
@@ -17,6 +18,7 @@
   import ManufactureVue from '@/components/Manufacture/Manufacture.vue';
   import ModalVue from '@/components/Modal.vue';
   import InfoBlockVue from '@/components/InfoBlock.vue';
+  import Example from '../components/Example.vue';
   
   export default {
     data() {
@@ -47,6 +49,7 @@
       'Manufacture': ManufactureVue,
       'Modal': ModalVue,
       'InfoBlock': InfoBlockVue,
+      'Example': Example,
     },
   }
 </script>
