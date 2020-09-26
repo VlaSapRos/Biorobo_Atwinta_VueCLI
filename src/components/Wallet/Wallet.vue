@@ -2,7 +2,7 @@
 .block
   span.rubric Кошелёк криптовалют
   .Wallet__coin-container
-    coin(v-for="item in coins" :number='item' :wallet='amountCoins')
+    WalletCoin(v-for="item in coins" :number='item' :wallet='amountCoins')
   p.Wallet__coins <b class='Wallet__coins_bold'>{{ amountCoins }}</b> {{' biorobo ' + coinsDeclination }}
   .Wallet__wrapper
     button.Wallet__button-to-gamble(@click="addCoins(checked)") Нацыганить
@@ -12,52 +12,50 @@
 </template>
 
 <script>
+import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
-import WalletCoinVue from './WalletCoin.vue';
-  export default {
-    data() {
-      return {
-        checked: false,
-        coins: [],
-      }
-    },
-    components:{
-      'coin': WalletCoinVue,
-    },
-    computed: {
-      ...mapState ([
-        'amountCoins',
-      ]),
-      coinsDeclination() {
-        let coinsText = '';
-        let amount = this.amountCoins;
-        if (amount != 11 && amount != 12 && amount != 13 && amount != 14) {
-          switch (amount % 10) {
-            case 1 : coinsText = 'монета'; break;
-            case 2 :
-            case 3 :
-            case 4 : coinsText = 'монеты'; break;
-            default : coinsText = 'монет';
-          }
-        } else { coinsText = 'монет'; }
-        return coinsText;
-      },
-    },
-    mounted: function countCoins() {
-      for (let i=0; i<100; i++){
-        this.coins[i]= i;
-      }
-    },
-    methods:{
-      addCoins: function(checked) {
-        if ((this.amountCoins + ((checked) ? 5 : 1)) <= 100 ) {
-          this.$store.commit('addCoins',(checked) ? 5 : 1)
-        } else {
-          this.$emit('overHundred');
+import WalletCoin from './WalletCoin.vue';
+
+@Options({
+  components:{
+     WalletCoin,
+  },
+  computed: {
+    ...mapState ([
+      'amountCoins',
+    ]),
+    coinsDeclination() {
+      let coinsText = '';
+      let amount = this.amountCoins;
+      if (amount != 11 && amount != 12 && amount != 13 && amount != 14) {
+        switch (amount % 10) {
+          case 1 : coinsText = 'монета'; break;
+          case 2 :
+          case 3 :
+          case 4 : coinsText = 'монеты'; break;
+          default : coinsText = 'монет';
         }
-      }
+      } else { coinsText = 'монет'; }
+      return coinsText;
     },
-  };
+  },
+})
+export default class Wallet extends Vue {
+  checked = false;
+  coins = [];
+  mounted() {
+    for (let i=0; i<100; i++){
+      this.coins[i]= i;
+    }
+  }
+  addCoins(checked) {
+    if ((this.amountCoins + ((checked) ? 5 : 1)) <= 100 ) {
+      this.$store.commit('addCoins',(checked) ? 5 : 1)
+    } else {
+    this.$emit('overHundred');
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

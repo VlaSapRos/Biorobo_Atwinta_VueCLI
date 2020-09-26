@@ -18,12 +18,15 @@ svg(
 </template>
 
 <script>
-  export default {
-    props:{
-      number:0,
-      wallet:0,
-    },
-  }
+import {Vue, Options} from 'vue-class-component';
+
+@Options({
+  props:{
+    number:0,
+    wallet:0,
+  },
+})
+export default class WalletCoin extends Vue {}
 </script>
 
 <style lang="scss" scoped>

@@ -3,7 +3,7 @@ button( :class='skin' @click='methodsOne()') {{ message }}
 </template>
 
 <script>
-import {Vue, Options} from 'vue-class-component';
+import { Vue, Options } from 'vue-class-component';
 
 export default class MyButton extends Vue {
   message = "Don't touch me!"
