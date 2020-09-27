@@ -18,7 +18,7 @@ svg(
 </template>
 
 <script>
-import {Vue, Options} from 'vue-class-component';
+import { Vue, Options } from 'vue-class-component';
 
 @Options({
   props:{

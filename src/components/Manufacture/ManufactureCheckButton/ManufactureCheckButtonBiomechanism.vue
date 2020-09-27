@@ -23,16 +23,20 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-  export default {
-    computed: {
-      ...mapState([
-        'stock',
-        'flags'
-      ]),
-    },
-    props: {
-      number: 0,
-    },
-  }
+import { Vue, Options } from 'vue-class-component';
+import { mapState } from 'vuex';
+
+@Options({
+  computed: {
+    ...mapState([
+      'stock',
+      'flags'
+    ]),
+  },
+  props: {
+    number: 0,
+  },
+})
+    
+export default class ManufactureCheckButtonBiomechanism extends Vue {}
 </script>

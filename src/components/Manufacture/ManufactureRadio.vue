@@ -15,19 +15,19 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        picked: this.value1
-      }
-    },
-    props: {
-      title: '',
-      name: '',
-      value1: '',
-      value2: '',
-    },
-  }
+import { Vue, Options } from 'vue-class-component';
+
+@Options({
+  props: {
+    title: '',
+    name: '',
+    value1: '',
+    value2: '',
+  },
+})
+export default class ManufactureRadio extends Vue {
+  picked = this.value1
+}
 </script>
 
 <style lang="scss" scoped>

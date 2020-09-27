@@ -8,21 +8,26 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+import { Vue, Options } from 'vue-class-component';
+import { mapState } from 'vuex';
 
-  export default {
-    props: {
-      pic: null,
-      title: '',
-      subtitle: '',
-      cost: 0,
-    },
-    computed: {
-      ...mapState([
-        'amountCoins',
-      ]),
-    },
-  }
+@Options({
+  emits:[
+    'buy'
+  ],
+  props: {
+    pic: null,
+    title: '',
+    subtitle: '',
+    cost: 0,
+  },
+  computed: {
+    ...mapState([
+      'amountCoins',
+    ]),
+  },
+})
+export default class MarketCard extends Vue{}
 </script>
 
 <style lang="scss" scoped>

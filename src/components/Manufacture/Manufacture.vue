@@ -16,134 +16,133 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-  import ManufactureRadioVue from './ManufactureRadio.vue';
-  import ManufactureCheckVue from './ManufactureCheck.vue';
-  import ManufactureSilhouetteVue from './ManufactureSilhouette.vue';
-  export default {
-    data(){
-      return {
-        roboType:{
-          stabilizer: 'Male',
-          type: 'FrontEnd',
-        },
+import { Vue, Options } from 'vue-class-component';
+import { mapState } from 'vuex';
+  
+import ManufactureRadio from './ManufactureRadio.vue';
+import ManufactureCheck from './ManufactureCheck.vue';
+import ManufactureSilhouette from './ManufactureSilhouette.vue';
+
+@Options({
+  components: {
+    ManufactureRadio,
+    ManufactureCheck,
+    ManufactureSilhouette,
+  },
+  computed: {
+    ...mapState([
+      'amountCoins',
+      'flags',
+      'stock',
+      'costRobot',
+    ]),
+    isBeCreate() {
+      if (this.amountCoins >= 10 
+      && this.stock.biomechanism.need == this.countBiomechanisms 
+      && this.stock.processor.need == this.countProcessors 
+      && this.stock.soul.need == this.countSouls
+      && this.stock.biomechanism.need <= this.stock.biomechanism.quantity 
+      && this.stock.processor.need <= this.stock.processor.quantity 
+      && this.stock.soul.need <= this.stock.soul.quantity) {
+        return true
+      }
+      else { return false }
+    },
+    countBiomechanisms() {
+      let count=0
+      this.flags.biomechanism.map((item) => {
+        (item) ? count++ : count+=0
+      })
+      return count
+    },
+    countProcessors() {
+      let count=0
+      this.flags.processor.map((item) => {
+        (item) ? count++ : count+=0
+      })
+      return count
+    },
+    countSouls() {
+      let count=0
+      this.flags.soul.map((item) => {
+        (item) ? count++ : count+=0
+      })
+      return count
+    },
+    notEnough() {
+      //notEnoughText разбит на 4 части
+      let part1 = '';
+      let part2 = '';
+      let part3 = '';
+      let part4 = '';
+      let forIf = this.amountCoins < this.costRobot || this.stock.biomechanism.need !== this.countBiomechanisms || this.stock.processor.need !== this.countProcessors || this.stock.soul.need !== this.countSouls;
+      if (forIf) {
+        let biomech = this.stock.biomechanism.need - this.countBiomechanisms 
+        let procc = this.stock.processor.need - this.countProcessors 
+        let sou = this.stock.soul.need  - this.countSouls 
+        let co = this.costRobot - this.amountCoins 
+        if (biomech == 1) {part1 = ' биомеханизма'}
+        else if (biomech == 0) {part1 = ''}
+        else {part1 = ` ${biomech} биомеханизмов`}
+
+        if (procc == 1) {part2 = ' процессора'}
+        else if (procc == 0) {part2 = ''}
+        else {part2 = ` ${procc} процессоров`}
+
+        if (sou == 1) {part3 = ' души'}
+        else if (sou == 0) {part3 = ''}
+        else {part3 = ` ${sou} душ`}
+
+        if (co > 0) {part4 = ' денег'}
+
+        if(part1 !== '' && part2 !== '' && part3 !== '' && part4 !== ''){
+          return 'Для производства биоробота не хватает' + part1 + ',' + part2 + ',' + part3 + ' и' + part4}
+        else if (part1 !== '' && part2 !== '' && part3 !== ''){
+          return 'Для производства биоробота не хватает' + part1 + ',' + part2 + ' и' + part3}
+        else if (part1 !== '' && part2 !== '' && part4 !== ''){
+          return 'Для производства биоробота не хватает' + part1 + ',' + part2 + ' и' + part4}
+        else if (part1 !== '' && part3 !== '' && part4 !== ''){
+          return 'Для производства биоробота не хватает' + part1 + ',' + part3 + ' и' + part4}
+        else if (part2 !== '' && part3 !== '' && part4 !== ''){
+          return 'Для производства биоробота не хватает' + part2 + ',' + part3 + ' и' + part4}
+        else if (part1 !== '' && part2 !== ''){
+          return 'Для производства биоробота не хватает' + part1 + ' и' + part2}
+        else if (part1 !== '' && part3 !== ''){
+          return 'Для производства биоробота не хватает' + part1 + ' и' + part3}
+        else if (part1 !== '' && part4 !== ''){
+          return 'Для производства биоробота не хватает' + part1 + ' и' + part4}
+        else if (part2 !== '' && part3 !== ''){
+          return 'Для производства биоробота не хватает' + part2 + ' и' + part3}
+        else if (part2 !== '' && part4 !== ''){
+          return 'Для производства биоробота не хватает' + part2 + ' и' + part4}
+        else if (part3 !== '' && part4 !== ''){
+          return 'Для производства биоробота не хватает' + part3 + ' и' + part4}
+        else if (part1 !== ''){
+          return 'Для производства биоробота не хватает' + part1}
+        else if (part2 !== ''){
+          return 'Для производства биоробота не хватает' + part2}
+        else if (part3 !== ''){
+          return 'Для производства биоробота не хватает' + part3}
+        else if (part4 !== ''){
+          return 'Для производства биоробота не хватает' + part4}
       }
     },
-    methods: {
-      createRobot : function () {
-        if(this.stock.biomechanism.need <= this.stock.biomechanism.quantity
-          && this.stock.processor.need <= this.stock.processor.quantity
-          && this.stock.soul.need <= this.stock.soul.quantity) {
-            this.$emit('robotCreated');
-            this.$store.dispatch('buildRobot');
-          }
-      },
-    },
-    components: {
-      'ManufactureRadio': ManufactureRadioVue,
-      'ManufactureCheck': ManufactureCheckVue,
-      'ManufactureSilhouette': ManufactureSilhouetteVue
-    },
-    computed: {
-      ...mapState([
-        'amountCoins',
-        'flags',
-        'stock',
-        'costRobot',
-      ]),
-      isBeCreate() {
-        if (this.amountCoins >= 10 
-          && this.stock.biomechanism.need == this.countBiomechanisms 
-          && this.stock.processor.need == this.countProcessors 
-          && this.stock.soul.need == this.countSouls
-          && this.stock.biomechanism.need <= this.stock.biomechanism.quantity 
-          && this.stock.processor.need <= this.stock.processor.quantity 
-          && this.stock.soul.need <= this.stock.soul.quantity) {
-            return true
-        }
-        else { return false }
-      },
-      countBiomechanisms() {
-        let count=0
-        this.flags.biomechanism.map((item) => {
-          (item) ? count++ : count+=0
-        })
-        return count
-      },
-      countProcessors() {
-        let count=0
-        this.flags.processor.map((item) => {
-          (item) ? count++ : count+=0
-        })
-        return count
-      },
-      countSouls() {
-        let count=0
-        this.flags.soul.map((item) => {
-          (item) ? count++ : count+=0
-        })
-        return count
-      },
-      notEnough() {
-        //notEnoughText разбит на 4 части
-        let part1 = '';
-        let part2 = '';
-        let part3 = '';
-        let part4 = '';
-        let forIf = this.amountCoins < this.costRobot || this.stock.biomechanism.need !== this.countBiomechanisms || this.stock.processor.need !== this.countProcessors || this.stock.soul.need !== this.countSouls;
-        if (forIf) {
-          let biomech = this.stock.biomechanism.need - this.countBiomechanisms 
-          let procc = this.stock.processor.need - this.countProcessors 
-          let sou = this.stock.soul.need  - this.countSouls 
-          let co = this.costRobot - this.amountCoins 
-          if (biomech == 1) {part1 = ' биомеханизма'}
-          else if (biomech == 0) {part1 = ''}
-          else {part1 = ` ${biomech} биомеханизмов`}
-
-          if (procc == 1) {part2 = ' процессора'}
-          else if (procc == 0) {part2 = ''}
-          else {part2 = ` ${procc} процессоров`}
-
-          if (sou == 1) {part3 = ' души'}
-          else if (sou == 0) {part3 = ''}
-          else {part3 = ` ${sou} душ`}
-
-          if (co > 0) {part4 = ' денег'}
-                    
-          if(part1 !== '' && part2 !== '' && part3 !== '' && part4 !== ''){
-            return 'Для производства биоробота не хватает' + part1 + ',' + part2 + ',' + part3 + ' и' + part4}
-          else if (part1 !== '' && part2 !== '' && part3 !== ''){
-            return 'Для производства биоробота не хватает' + part1 + ',' + part2 + ' и' + part3}
-          else if (part1 !== '' && part2 !== '' && part4 !== ''){
-            return 'Для производства биоробота не хватает' + part1 + ',' + part2 + ' и' + part4}
-          else if (part1 !== '' && part3 !== '' && part4 !== ''){
-            return 'Для производства биоробота не хватает' + part1 + ',' + part3 + ' и' + part4}
-          else if (part2 !== '' && part3 !== '' && part4 !== ''){
-            return 'Для производства биоробота не хватает' + part2 + ',' + part3 + ' и' + part4}
-          else if (part1 !== '' && part2 !== ''){
-            return 'Для производства биоробота не хватает' + part1 + ' и' + part2}
-          else if (part1 !== '' && part3 !== ''){
-            return 'Для производства биоробота не хватает' + part1 + ' и' + part3}
-          else if (part1 !== '' && part4 !== ''){
-            return 'Для производства биоробота не хватает' + part1 + ' и' + part4}
-          else if (part2 !== '' && part3 !== ''){
-            return 'Для производства биоробота не хватает' + part2 + ' и' + part3}
-          else if (part2 !== '' && part4 !== ''){
-            return 'Для производства биоробота не хватает' + part2 + ' и' + part4}
-          else if (part3 !== '' && part4 !== ''){
-            return 'Для производства биоробота не хватает' + part3 + ' и' + part4}
-          else if (part1 !== ''){
-            return 'Для производства биоробота не хватает' + part1}
-          else if (part2 !== ''){
-            return 'Для производства биоробота не хватает' + part2}
-          else if (part3 !== ''){
-            return 'Для производства биоробота не хватает' + part3}
-          else if (part4 !== ''){
-            return 'Для производства биоробота не хватает' + part4}
-        }
-      },
-    },
+  },
+})
+export default class Manufacture extends Vue {
+  roboType = {
+    stabilizer: 'Male',
+    type: 'FrontEnd',
   }
+  createRobot() {
+    if(this.stock.biomechanism.need <= this.stock.biomechanism.quantity
+    && this.stock.processor.need <= this.stock.processor.quantity
+    && this.stock.soul.need <= this.stock.soul.quantity) {
+      this.$emit('robotCreated');
+      this.$store.dispatch('buildRobot');
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

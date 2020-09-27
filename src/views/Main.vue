@@ -10,48 +10,46 @@
   Example
 </template>
 
-<script>
-  import MyHeaderVue from '@/components/MyHeader.vue';
-  import WalletVue from '@/components/Wallet/Wallet.vue';
-  import MarketVue from '@/components/Market/Market.vue';
-  import StockVue from '@/components/Stock/Stock.vue';
-  import ManufactureVue from '@/components/Manufacture/Manufacture.vue';
-  import ModalVue from '@/components/Modal.vue';
-  import InfoBlockVue from '@/components/InfoBlock.vue';
+<script> 
+import { Vue, Options } from 'vue-class-component';
+
+  import MyHeader from '@/components/MyHeader.vue';
+  import Wallet from '@/components/Wallet/Wallet.vue';
+  import Market from '@/components/Market/Market.vue';
+  import Stock from '@/components/Stock/Stock.vue';
+  import Manufacture from '@/components/Manufacture/Manufacture.vue';
+  import Modal from '@/components/Modal.vue';
+  import InfoBlock from '@/components/InfoBlock.vue';
   import Example from '../components/Example.vue';
   
-  export default {
-    data() {
-      return {
-        showModal:false,
-        modalProps:{
-          title:'',
-          subtitleOne:'',
-          subtitleTwo: '',
-          pic:'',
-        },
-      }
-    },
-    methods:{
-      modalTrue:function(title,subtitleOne,subtitleTwo,pic){
+  @Options({    
+    components: {
+      MyHeader,
+      Wallet,
+      Market,
+      Stock,
+      Manufacture,
+      Modal,
+      InfoBlock,
+      Example,
+    },})
+  export default class Main extends Vue{
+    showModal = false;
+    modalProps = {
+      title : '',
+      subtitleOne : '',
+      subtitleTwo : '',
+      pic : '',
+    }
+    modalTrue(title,subtitleOne,subtitleTwo,pic){
         this.modalProps.title = title;
         this.modalProps.subtitleOne = subtitleOne;
         this.modalProps.subtitleTwo = subtitleTwo;
         this.modalProps.pic = pic;
         this.showModal = true;
       }
-    },
-    components: {
-      'MyHeader': MyHeaderVue,
-      'Wallet': WalletVue,
-      'Market': MarketVue,
-      'Stock': StockVue,
-      'Manufacture': ManufactureVue,
-      'Modal': ModalVue,
-      'InfoBlock': InfoBlockVue,
-      'Example': Example,
-    },
   }
+
 </script>
 
 <style lang="scss" scoped>

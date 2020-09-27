@@ -23,19 +23,22 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+import { Vue, Options } from 'vue-class-component';
+import { mapState } from 'vuex';
 
-  import MarketCardVue from './MarketCard.vue';
-  export default {
-    computed:{
-      ...mapState([
-        'stock',
-      ])
-    },
-    components: {
-      'MarketCard': MarketCardVue,
-    },
-  }
+import MarketCard from './MarketCard.vue';
+
+@Options({
+  computed:{
+    ...mapState([
+      'stock',
+    ])
+  },
+  components: {
+    MarketCard,
+  },
+})
+export default class Market extends Vue {}
 </script>
 
 v-on:buy="$store.commit('buyBiomechanism',stock.biomechanism.cost)"

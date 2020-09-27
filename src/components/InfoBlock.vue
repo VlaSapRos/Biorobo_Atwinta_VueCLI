@@ -6,9 +6,10 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-  export default {
-  };
+import { Vue, Options } from 'vue-class-component';
+import { mapState } from 'vuex';
+
+export default class InfoBlock extends Vue{};
 </script>
 
 <style lang="scss" scoped>

@@ -10,11 +10,14 @@
 </template>
 
 <script>
-export default {
-    props:{
-        modal:'',
-    }
-}
+import { Vue, Options } from 'vue-class-component';
+
+@Options({
+  props:{
+    modal:'',
+  }
+})
+export default class Modal extends Vue {}
 </script>
 
 <style lang="scss" scoped>

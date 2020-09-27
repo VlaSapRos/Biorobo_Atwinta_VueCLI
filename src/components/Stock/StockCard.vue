@@ -8,20 +8,23 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-  export default {
-    props: {
-      title: '',
-      quantity: '',
-      cost: 0,
-      thing: '',
-    },
-    computed: {
-      ...mapState([
-        'amountCoins',
-      ]),
-    },
-  }
+import { Vue, Options } from 'vue-class-component';
+import { mapState } from 'vuex';
+
+@Options({
+  props: {
+    title: '',
+    quantity: '',
+    cost: 0,
+    thing: '',
+  },
+  computed: {
+    ...mapState([
+      'amountCoins',
+    ]),
+  },
+})
+export default class StockCard extends Vue {}
 </script>
 
 <style lang="scss" scoped>
