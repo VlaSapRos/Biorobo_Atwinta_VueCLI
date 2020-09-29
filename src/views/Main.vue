@@ -1,13 +1,12 @@
 <template lang="pug">
 .main__container
-  Modal(v-if='showModal' :modal='modalProps' v-on:close="showModal=false; $store.commit('reset')")
+  Modal(v-if='modalVisibility' v-on:close="modalVisibility=false; $store.commit('reset')") 
   MyHeader
   InfoBlock
-  Wallet(v-on:overHundred="modalTrue('Количество монет ограничено', 'Вы не можете нацыганить', 'более 100 монет biorobo', '/assets/img/coin/bigCoin.svg')")
+  Wallet(v-on:overHundred="showModal('OverHundred')")
   Market
-  Stock(v-on:overHundred="modalTrue('Количество монет ограничено', 'Вы не можете нацыганить', 'более 100 монет biorobo', '/assets/img/coin/bigCoin.svg')")
-  Manufacture(v-on:robotCreated="modalTrue('Биоробот произведён', 'Поздравляем!', 'Вы произвели биоробота', '')")
-  Example
+  Stock(v-on:overHundred="showModal('OverHundred')")
+  Manufacture(v-on:robotCreated="showModal('RobotCreated')")
 </template>
 
 <script> 
@@ -18,11 +17,11 @@ import { Vue, Options } from 'vue-class-component';
   import Market from '@/components/Market/Market.vue';
   import Stock from '@/components/Stock/Stock.vue';
   import Manufacture from '@/components/Manufacture/Manufacture.vue';
-  import Modal from '@/components/Modal.vue';
+  import Modal from '@/components/Modal/Modal.vue';
   import InfoBlock from '@/components/InfoBlock.vue';
   import Example from '../components/Example.vue';
   
-  @Options({    
+  @Options({
     components: {
       MyHeader,
       Wallet,
@@ -33,21 +32,19 @@ import { Vue, Options } from 'vue-class-component';
       InfoBlock,
       Example,
     },})
+    
   export default class Main extends Vue{
-    showModal = false;
-    modalProps = {
-      title : '',
-      subtitleOne : '',
-      subtitleTwo : '',
-      pic : '',
-    }
-    modalTrue(title,subtitleOne,subtitleTwo,pic){
-        this.modalProps.title = title;
-        this.modalProps.subtitleOne = subtitleOne;
-        this.modalProps.subtitleTwo = subtitleTwo;
-        this.modalProps.pic = pic;
-        this.showModal = true;
+    modalVisibility = false;
+    modalProps = '';
+
+    showModal(type){
+      switch (type) {
+        case 'OverHundred' : this.$store.commit('isOverHundred'); break;
+        case 'RobotCreated' : this.$store.commit('isRobotCreated'); break;
       }
+      console.log(type);
+      this.modalVisibility = true;
+    }
   }
 
 </script>

@@ -12,6 +12,10 @@ import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
 @Options({
+  emits:[
+    'overHundred',
+    'sell',
+  ],
   props: {
     title: '',
     quantity: '',
@@ -38,7 +42,7 @@ export default class StockCard extends Vue {}
     text-align: center;
     margin-bottom: 24px;
   }
-  .card__subtitle_StockCard {
+  .card__subtitle_stockcard {
     margin-bottom: 15px;
   }
   .card {

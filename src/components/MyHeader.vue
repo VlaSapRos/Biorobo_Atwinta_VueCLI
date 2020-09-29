@@ -8,11 +8,6 @@
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-@Options({
-  computed: mapState ([
-    'coinsText'
-  ])
-})
 export default class MyHeader extends Vue{}
 </script>
 

@@ -32,6 +32,9 @@ import { mapState } from 'vuex';
 import StockCard from "./StockCard.vue";
 
 @Options({
+  emits:[
+    'overHundred'
+  ],
   computed: {
     ...mapState([
       'stock',

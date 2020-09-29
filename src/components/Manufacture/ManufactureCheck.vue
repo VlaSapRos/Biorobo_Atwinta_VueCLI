@@ -1,5 +1,5 @@
 <template lang="pug">
-.ManufactureCheck__checkboxs
+.manufacturecheck__checkboxs
   ManufactureCheckButtonBiomechanism( number='1' v-if="isBiomechanism && count >= 1" )
   ManufactureCheckButtonProcessor( number='1' v-if='isProcessor && count >= 1' )
   ManufactureCheckButtonSoul( number='1' v-if='isSoul && count >= 1' )
@@ -38,7 +38,7 @@ export default class ManufactureCheck extends Vue{}
 </script>
 
 <style lang="scss" scoped>
-    .ManufactureCheck__checkboxs {
+    .manufacturecheck__checkboxs {
         display: flex;
         align-items: center;
         justify-content: space-between;

@@ -1,17 +1,17 @@
 <template lang="pug">
 .block(id='manufacture')
-  span.rubric.rubric_Manufacture Производство
-  .container.container_Manufacture
+  span.rubric.rubric_manufacture Производство
+  .container.container_manufacture
     .container_column.container_column_Manufacture
       ManufactureRadio(title='Тип биоробота:' name='type' value1 = 'FrontEnd' value2 = 'Design' v-on:roboTypeChange='roboType.type=$event')
       ManufactureRadio(title='Стабилизатор:' name='gender' value1 = 'Male' value2 = 'Female' v-on:roboTypeChange='roboType.stabilizer=$event')
       button.button-create(:class="{active: isBeCreate}" :disabled='!isBeCreate' @click="createRobot()") Произвести за 10 монет
-    .container_column.container_column_Manufacture(style='padding-top:9px')
+    .container_column.container_column_manufacture(style='padding-top:9px')
       ManufactureCheck( count='4' isBiomechanism='true' )
       ManufactureCheck( count='4' isProcessor='true' )
       ManufactureCheck( count='1' isSoul='true' )
-      .Manufacture__not-enough {{ notEnough }}
-    .container_column.container_column_Manufacture
+      .manufacture__not-enough {{ notEnough }}
+    .container_column.container_column_manufacture
       ManufactureSilhouette(:stabilizer='roboType.stabilizer' :type='roboType.type' :isBeCreate='isBeCreate')
 </template>
 
@@ -146,20 +146,20 @@ export default class Manufacture extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .rubric_Manufacture {
+  .rubric_manufacture {
       line-height: 72px;
       height: 72px;
   }
-  .container_Manufacture {
+  .container_manufacture {
     height: 320px;
   }
-  .container_column_Manufacture {
+  .container_column_manufacture {
     justify-content: start;
     align-items: start;
     height: 327px;
     width: 236px;
   }
-  .Manufacture__not-enough {
+  .manufacture__not-enough {
     width: 195px;
     height: 48px;
     font-style: normal;

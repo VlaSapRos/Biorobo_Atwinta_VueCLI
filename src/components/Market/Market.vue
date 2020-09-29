@@ -41,4 +41,3 @@ import MarketCard from './MarketCard.vue';
 export default class Market extends Vue {}
 </script>
 
-v-on:buy="$store.commit('buyBiomechanism',stock.biomechanism.cost)"

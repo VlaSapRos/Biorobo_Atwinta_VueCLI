@@ -1,22 +1,26 @@
 <template lang="pug">
 .block
   span.rubric Кошелёк криптовалют
-  .Wallet__coin-container
+  .wallet__coin-container
     WalletCoin(v-for="item in coins" :number='item' :wallet='amountCoins')
-  p.Wallet__coins <b class='Wallet__coins_bold'>{{ amountCoins }}</b> {{' biorobo ' + coinsDeclination }}
-  .Wallet__wrapper
-    button.Wallet__button-to-gamble(@click="addCoins(checked)") Нацыганить
-    input.Wallet__input-checkbox(type="checkbox" id="checkbox" v-model="checked")
-    label.Wallet__label-checkbox(for='checkbox')
-    label.Wallet__label-checkbox-text(for='checkbox') Цыганить по 5 монет
+  p.wallet__coins <b class='Wallet__coins_bold'>{{ amountCoins }}</b> {{' biorobo ' + coinsDeclination }}
+  .wallet__wrapper
+    button.wallet__button-to-gamble(@click="addCoins(checked)") Нацыганить
+    input.wallet__input-checkbox(type="checkbox" id="checkbox" v-model="checked")
+    label.wallet__label-checkbox(for='checkbox')
+    label.wallet__label-checkbox-text(for='checkbox') Цыганить по 5 монет
 </template>
 
 <script>
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
+
 import WalletCoin from './WalletCoin.vue';
 
 @Options({
+  emits:[
+    'overHundred'
+  ],
   components:{
      WalletCoin,
   },
@@ -59,7 +63,7 @@ export default class Wallet extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .Wallet__coins {
+  .wallet__coins {
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -68,28 +72,28 @@ export default class Wallet extends Vue {
     margin: 0;
     margin-bottom: 43px;
   }
-  .Wallet__coins_bold {
+  .wallet__coins_bold {
     font-style: normal;
     font-weight: 1200;
   }
-  .Wallet__coin-container {
+  .wallet__coin-container {
     padding: 0;
     margin-bottom: 23px;
     position: relative;
     height: 20px;
   }
-  .Wallet__input-checkbox {
+  .wallet__input-checkbox {
     appearance: none;
     position: absolute;
     display: none;
   }
-  .Wallet__label-checkbox-text {
+  .wallet__label-checkbox-text {
     position: absolute;
     left: 170px;
     font-weight: 500;
     font-size: 16px;
   }
-  .Wallet__label-checkbox {
+  .wallet__label-checkbox {
     position: absolute;
     left: 133px;
     width: 24px;
@@ -97,7 +101,7 @@ export default class Wallet extends Vue {
     border: 2px solid #A3B8CC;
     box-sizing: border-box;
   }
-  .Wallet__label-checkbox::after {
+  .wallet__label-checkbox::after {
     content: '';
     background: url('/img/checked.svg') no-repeat;
     height: 16px;
@@ -108,10 +112,10 @@ export default class Wallet extends Vue {
     top: 4px;
     opacity: 0;
   }
-  .Wallet__input-checkbox:checked + .Wallet__label-checkbox::after {
+  .wallet__input-checkbox:checked + .wallet__label-checkbox::after {
     opacity: 1;
   }
-  .Wallet__button-to-gamble {
+  .wallet__button-to-gamble {
     width: 102px;
     height: 24px;
     padding: 0;
@@ -126,7 +130,7 @@ export default class Wallet extends Vue {
     border-bottom: FF7F22;
     border-bottom: 1px solid rgba(255, 127, 34, 0.5);
   }
-  .Wallet__wrapper {
+  .wallet__wrapper {
     position: relative;
     display: flex;
     justify-content: start;

@@ -1,23 +1,21 @@
 <template lang="pug">
-.modal__mask
-  .modal__container
-    img.pic(:src='modal.pic')
-    button.modal__close-button(v-on:click="$emit('close')")
-      img(src='img/cross.svg')
-    span.modal__title {{modal.title}}
-    span.modal__subtitle {{modal.subtitleOne}}
-    span.modal__subtitle.modal__subtitle_two {{modal.subtitleTwo}}
+.modal__container
+  button.modal__close-button(v-on:click="$emit('close')")
+    img(src='img/cross.svg')
+  span.modal__title Биоробот произведён
+  span.modal__subtitle Поздравляем!
+  span.modal__subtitle.modal__subtitle_two Вы произвели биоробота
 </template>
 
 <script>
 import { Vue, Options } from 'vue-class-component';
 
 @Options({
-  props:{
-    modal:'',
-  }
+  emits:[
+    'close'
+  ],
 })
-export default class Modal extends Vue {}
+export default class ModalRobotCreated extends Vue {}
 </script>
 
 <style lang="scss" scoped>
