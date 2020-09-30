@@ -8,6 +8,10 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Main',
     component: Main
   },
+  {
+    path: '/manufacture',
+    component: Main
+  },
   // {
   //   path: '/main',
   //   name: 'Main',

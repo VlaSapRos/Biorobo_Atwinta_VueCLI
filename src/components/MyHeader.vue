@@ -1,7 +1,7 @@
 <template lang="pug">
 .myheader
   img(src='img/pac-man.svg')
-  a.button-create.button-scroll(href='#manufacture') Произвести биоробота
+  a.button-create.button-scroll(href='/#manufacture') Произвести биоробота
 </template>
 
 <script>
