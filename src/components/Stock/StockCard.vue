@@ -4,7 +4,7 @@
   span.card__subtitle.card__subtitle_StockCard  Стоимость: {{ cost }} монет
   span.card__quantity {{ quantity }} шт
   .button-sell-border( v-bind:class="{'button-sell-border_disabled': (quantity < 1) }")
-    button.button-sell-border__button(:disabled='quantity < 1' v-on:click="$emit((amountCoins+cost <= 100) ? 'sell' : 'overHundred')") Продать
+    button.button-sell-border__button(:disabled='quantity < 1' v-on:click="$emit((wallet.amountCoins+cost <= 100) ? 'sell' : 'overHundred')") Продать
 </template>
 
 <script>
@@ -24,7 +24,7 @@ import { mapState } from 'vuex';
   },
   computed: {
     ...mapState([
-      'amountCoins',
+      'wallet',
     ]),
   },
 })

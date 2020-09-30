@@ -2,8 +2,8 @@
 .block
   span.rubric Кошелёк криптовалют
   .wallet__coin-container
-    WalletCoin(v-for="item in coins" :number='item' :wallet='amountCoins')
-  p.wallet__coins <b class='Wallet__coins_bold'>{{ amountCoins }}</b> {{' biorobo ' + coinsDeclination }}
+    WalletCoin(v-for="item in coins" :number='item' :wallet='wallet.amountCoins')
+  p.wallet__coins <b class='Wallet__coins_bold'>{{ wallet.amountCoins }}</b> {{' biorobo ' + coinsDeclination }}
   .wallet__wrapper
     button.wallet__button-to-gamble(@click="addCoins(checked)") Нацыганить
     input.wallet__input-checkbox(type="checkbox" id="checkbox" v-model="checked")
@@ -26,11 +26,11 @@ import WalletCoin from './WalletCoin.vue';
   },
   computed: {
     ...mapState ([
-      'amountCoins',
+      'wallet',
     ]),
     coinsDeclination() {
       let coinsText = '';
-      let amount = this.amountCoins;
+      let amount = this.wallet.amountCoins;
       if (amount != 11 && amount != 12 && amount != 13 && amount != 14) {
         switch (amount % 10) {
           case 1 : coinsText = 'монета'; break;
@@ -53,7 +53,7 @@ export default class Wallet extends Vue {
     }
   }
   addCoins(checked) {
-    if ((this.amountCoins + ((checked) ? 5 : 1)) <= 100 ) {
+    if ((this.wallet.amountCoins + ((checked) ? 5 : 1)) <= 100 ) {
       this.$store.commit('addCoins',(checked) ? 5 : 1)
     } else {
     this.$emit('overHundred');

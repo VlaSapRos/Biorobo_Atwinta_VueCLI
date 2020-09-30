@@ -14,7 +14,7 @@ import { mapState } from 'vuex';
   },
   computed: {
     ...mapState([
-      'robotIsCreated',
+      'manufacture',
     ]),
     picture: function() {
       switch (this.stabilizer + this.type) {
@@ -26,7 +26,7 @@ import { mapState } from 'vuex';
       }
     },
     derictory: function() {
-      if (this.robotIsCreated) { return 'created'}
+      if (this.manufacture.robotIsCreated) { return 'created'}
       else if (this.isBeCreate) { return 'canBeCreated'}
       else { return 'canNotBeCreated' }
     }

@@ -34,12 +34,12 @@ import ManufactureSilhouette from './ManufactureSilhouette.vue';
   },
   computed: {
     ...mapState([
-      'amountCoins',
+      'wallet',
       'stock',
       'manufacture',
     ]),
     isBeCreate() {
-      if (this.amountCoins >= 10 
+      if (this.wallet.amountCoins >= 10 
       && this.stock.biomechanism.need == this.countBiomechanisms 
       && this.stock.processor.need == this.countProcessors 
       && this.stock.soul.need == this.countSouls
@@ -77,12 +77,12 @@ import ManufactureSilhouette from './ManufactureSilhouette.vue';
       let part2 = '';
       let part3 = '';
       let part4 = '';
-      let forIf = this.amountCoins < this.manufacture.costRobot || this.stock.biomechanism.need !== this.countBiomechanisms || this.stock.processor.need !== this.countProcessors || this.stock.soul.need !== this.countSouls;
+      let forIf = this.wallet.amountCoins < this.manufacture.costRobot || this.stock.biomechanism.need !== this.countBiomechanisms || this.stock.processor.need !== this.countProcessors || this.stock.soul.need !== this.countSouls;
       if (forIf) {
         let biomech = this.stock.biomechanism.need - this.countBiomechanisms 
         let procc = this.stock.processor.need - this.countProcessors 
         let sou = this.stock.soul.need  - this.countSouls 
-        let co = this.manufacture.costRobot - this.amountCoins 
+        let co = this.manufacture.costRobot - this.wallet.amountCoins 
         if (biomech == 1) {part1 = ' биомеханизма'}
         else if (biomech == 0) {part1 = ''}
         else {part1 = ` ${biomech} биомеханизмов`}

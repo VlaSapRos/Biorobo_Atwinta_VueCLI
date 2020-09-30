@@ -4,7 +4,7 @@
     img.card__img(:src='pic')
   span.card__title {{ title }}
   span.card__subtitle Стоимость: {{ cost }} монет
-  button( :disabled='amountCoins < cost' class='button-install' v-on:click="$emit('buy')" ) Установить
+  button( :disabled='wallet.amountCoins < cost' class='button-install' v-on:click="$emit('buy')" ) Установить
 </template>
 
 <script>
@@ -23,7 +23,7 @@ import { mapState } from 'vuex';
   },
   computed: {
     ...mapState([
-      'amountCoins',
+      'wallet',
     ]),
   },
 })

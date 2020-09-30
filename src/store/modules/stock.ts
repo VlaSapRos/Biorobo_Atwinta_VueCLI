@@ -41,4 +41,18 @@ export default {
       state.soul.quantity -= amount;
     },
   },
+  actions: {
+    sellBiomechanism({commit, state, dispatch}:any) {
+      commit('addCoins', state.biomechanism.costOfSale);
+      commit('removeBiomechanism', 1);
+    },
+    sellProcessor({commit, state}:any) {
+      commit('addCoins', state.processor.costOfSale);
+      commit('removeProcessor', 1);
+    },
+    sellSoul({commit, state}:any) {
+      commit('addCoins', state.soul.costOfSale);
+      commit('removeSoul', 1);
+    },
+  }
 }

@@ -12,8 +12,8 @@ export default {
   },
   mutations: {
     createRobot (state:any) {
-      state.amountCoins -= state.costRobot;
       state.robotIsCreated = true;
+      console.log(state.robotIsCreated);
     },
     selectedBiomechanism (state:any, index:number) {
       state.flags.biomechanism[index] = true;
@@ -41,5 +41,17 @@ export default {
         soul: [false,false,false,false], 
       }
     },
-  }
+  },
+  actions: {
+    buildRobot({commit, rootState, dispatch}:any) { // Manufacture
+      dispatch('createRobot');
+      commit('removeBiomechanism', rootState.stock.biomechanism.need);
+      commit('removeProcessor', rootState.stock.processor.need);
+      commit('removeSoul', rootState.stock.soul.need);
+    },
+    createRobot({commit, state}:any) {
+      commit('subtractCoins',state.costRobot)
+      commit('createRobot')
+    }
+  },
 }
