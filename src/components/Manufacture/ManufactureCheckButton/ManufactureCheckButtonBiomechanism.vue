@@ -1,13 +1,13 @@
 <template>
 <button
   class="checkbox"
-  v-bind:class='{ checkbox_active:( flags.biomechanism[number-1] ) }'
-  @click="$store.commit((flags.biomechanism[number-1]) ? 'unSelectedBiomechanism' : 'selectedBiomechanism',number-1)"
+  v-bind:class='{ checkbox_active:( manufacture.flags.biomechanism[number-1] ) }'
+  @click="$store.commit((manufacture.flags.biomechanism[number-1]) ? 'unSelectedBiomechanism' : 'selectedBiomechanism',number-1)"
   :disabled='+stock.biomechanism.quantity<+number'
 >
   <svg 
     class='fill-gray' 
-    v-bind:class='{"fill-white":+stock.biomechanism.quantity>=+number, "fill-orange":(flags.biomechanism[number-1] && +stock.biomechanism.quantity>=+number)}'
+    v-bind:class='{"fill-white":+stock.biomechanism.quantity>=+number, "fill-orange":(manufacture.flags.biomechanism[number-1] && +stock.biomechanism.quantity>=+number)}'
     width="36" 
     height="24" 
     viewBox="0 0 36 24" 
@@ -30,7 +30,7 @@ import { mapState } from 'vuex';
   computed: {
     ...mapState([
       'stock',
-      'flags'
+      'manufacture'
     ]),
   },
   props: {

@@ -1,13 +1,13 @@
 <template>
 <button 
   class="checkbox"
-  v-bind:class='{ checkbox_active:( flags.soul[number-1] ) }'
-  @click="$store.commit((flags.soul[number-1]) ? 'unSelectedSoul' : 'selectedSoul',number-1)"
+  v-bind:class='{ checkbox_active:( manufacture.flags.soul[number-1] ) }'
+  @click="$store.commit((manufacture.flags.soul[number-1]) ? 'unSelectedSoul' : 'selectedSoul',number-1)"
   :disabled='+stock.soul.quantity<+number'
 >
   <svg 
     class='fill-gray' 
-    v-bind:class='{"fill-white":+stock.soul.quantity>=+number, "fill-orange":(flags.soul[number-1] && +stock.soul.quantity>=+number), }' 
+    v-bind:class='{"fill-white":+stock.soul.quantity>=+number, "fill-orange":(manufacture.flags.soul[number-1] && +stock.soul.quantity>=+number), }' 
     width="32" 
     height="32" 
     viewBox="0 0 32 32" 
@@ -40,7 +40,7 @@ import { mapState } from 'vuex';
   computed: {
     ...mapState([
       'stock',
-      'flags'
+      'manufacture'
     ]),
   },
   props: {

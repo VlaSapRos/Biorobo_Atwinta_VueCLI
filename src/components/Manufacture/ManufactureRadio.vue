@@ -18,6 +18,9 @@
 import { Vue, Options } from 'vue-class-component';
 
 @Options({
+  emits:[
+    'roboTypeChange'
+  ],
   props: {
     title: '',
     name: '',

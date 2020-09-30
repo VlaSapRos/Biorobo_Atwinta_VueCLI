@@ -35,9 +35,8 @@ import ManufactureSilhouette from './ManufactureSilhouette.vue';
   computed: {
     ...mapState([
       'amountCoins',
-      'flags',
       'stock',
-      'costRobot',
+      'manufacture',
     ]),
     isBeCreate() {
       if (this.amountCoins >= 10 
@@ -53,21 +52,21 @@ import ManufactureSilhouette from './ManufactureSilhouette.vue';
     },
     countBiomechanisms() {
       let count=0
-      this.flags.biomechanism.map((item) => {
+      this.manufacture.flags.biomechanism.map((item) => {
         (item) ? count++ : count+=0
       })
       return count
     },
     countProcessors() {
       let count=0
-      this.flags.processor.map((item) => {
+      this.manufacture.flags.processor.map((item) => {
         (item) ? count++ : count+=0
       })
       return count
     },
     countSouls() {
       let count=0
-      this.flags.soul.map((item) => {
+      this.manufacture.flags.soul.map((item) => {
         (item) ? count++ : count+=0
       })
       return count
@@ -78,12 +77,12 @@ import ManufactureSilhouette from './ManufactureSilhouette.vue';
       let part2 = '';
       let part3 = '';
       let part4 = '';
-      let forIf = this.amountCoins < this.costRobot || this.stock.biomechanism.need !== this.countBiomechanisms || this.stock.processor.need !== this.countProcessors || this.stock.soul.need !== this.countSouls;
+      let forIf = this.amountCoins < this.manufacture.costRobot || this.stock.biomechanism.need !== this.countBiomechanisms || this.stock.processor.need !== this.countProcessors || this.stock.soul.need !== this.countSouls;
       if (forIf) {
         let biomech = this.stock.biomechanism.need - this.countBiomechanisms 
         let procc = this.stock.processor.need - this.countProcessors 
         let sou = this.stock.soul.need  - this.countSouls 
-        let co = this.costRobot - this.amountCoins 
+        let co = this.manufacture.costRobot - this.amountCoins 
         if (biomech == 1) {part1 = ' биомеханизма'}
         else if (biomech == 0) {part1 = ''}
         else {part1 = ` ${biomech} биомеханизмов`}

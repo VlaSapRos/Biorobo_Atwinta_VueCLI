@@ -4,5 +4,10 @@ interface IDetails {
   quantity: number,
   readonly need: number,
 }
+interface IFlags{
+  biomechanism: Array<Boolean>
+  processor: Array<Boolean>
+  soul: Array<Boolean>
+}
 
-export {IDetails};
+export {IDetails, IFlags};
