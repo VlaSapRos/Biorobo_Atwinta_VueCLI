@@ -1,5 +1,5 @@
 <template lang="pug">
-.modal__container
+div
   button.modal__close-button(v-on:click="$emit('close')")
     img(src='img/cross.svg')
   span.modal__title Биоробот произведён

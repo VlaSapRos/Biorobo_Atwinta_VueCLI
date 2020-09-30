@@ -1,16 +1,14 @@
 <template lang="pug">
 .modal__mask
-  ModalOverHundred( v-on:close="$emit('close')" v-if='isOverHundred' )
-  ModalRobotCreated( v-on:close="$emit('close')" v-if='isRobotCreated' )
-
+  .modal__container
+    slot
 </template>
 
 <script>
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-import ModalOverHundred from '@/components/Modal/ModalOverHundred';
-import ModalRobotCreated from '@/components/Modal/ModalRobotCreated';
+
 
 @Options({
   emits:[
@@ -22,10 +20,6 @@ import ModalRobotCreated from '@/components/Modal/ModalRobotCreated';
       'isRobotCreated',
     ])
   },
-  components: {
-    ModalOverHundred,
-    ModalRobotCreated,
-  }
 })
 export default class Modal extends Vue {}
 </script>

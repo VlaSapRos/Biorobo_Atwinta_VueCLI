@@ -24,6 +24,9 @@ import ManufactureCheck from './ManufactureCheck.vue';
 import ManufactureSilhouette from './ManufactureSilhouette.vue';
 
 @Options({
+  emits:[
+    'robotCreated',
+  ],
   components: {
     ManufactureRadio,
     ManufactureCheck,

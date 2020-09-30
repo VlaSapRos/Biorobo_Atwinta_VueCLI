@@ -13,8 +13,6 @@ export default createStore({
       soul: [false,false,false,false],
     },
     costRobot: 10,
-    isOverHundred: false,
-    isRobotCreated: false,
   },
   actions: {
     buyBiomechanism(context) {
@@ -88,14 +86,6 @@ export default createStore({
         processor: [false,false,false,false],
         soul: [false,false,false,false], 
       }
-    },
-    isOverHundred (state) {
-      state.isOverHundred = true;
-      state.isRobotCreated = false;
-    },
-    isRobotCreated (state) {
-      state.isRobotCreated = true;
-      state.isOverHundred = false;
     },
   },
   modules:{
