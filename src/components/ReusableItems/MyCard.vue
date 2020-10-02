@@ -12,7 +12,7 @@
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-import MyButton from '@/components/MyButton.vue';
+import MyButton from '@/components/ReusableItems/MyButton.vue';
 
 @Options({
   emits:[

@@ -22,7 +22,7 @@ import { mapState } from 'vuex';
 import ManufactureRadio from './ManufactureRadio.vue';
 import ManufactureCheck from './ManufactureCheck.vue';
 import ManufactureSilhouette from './ManufactureSilhouette.vue';
-import MyButton from '@/components/MyButton.vue';
+import MyButton from '@/components/ReusableItems/MyButton.vue';
 
 @Options({
   emits:[

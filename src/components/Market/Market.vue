@@ -29,8 +29,7 @@
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-import MarketCard from '@/components/Market/MarketCard.vue';
-import MyCard from "@/components/MyCard.vue";
+import MyCard from "@/components/ReusableItems/MyCard.vue";
 
 @Options({
   computed:{
@@ -39,7 +38,6 @@ import MyCard from "@/components/MyCard.vue";
     ])
   },
   components: {
-    MarketCard,
     MyCard
   },
 })

@@ -32,8 +32,7 @@
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-import StockCard from "./StockCard.vue";
-import MyCard from "@/components/MyCard.vue";
+import MyCard from "@/components/ReusableItems/MyCard.vue";
 
 @Options({
   emits:[
@@ -45,7 +44,6 @@ import MyCard from "@/components/MyCard.vue";
     ]),
   },
   components: {
-    StockCard,
     MyCard
   },
 })

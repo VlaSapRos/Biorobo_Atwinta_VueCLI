@@ -24,7 +24,6 @@ import Stock from '@/components/Stock/Stock.vue';
 import Manufacture from '@/components/Manufacture/Manufacture.vue';
 import Modal from '@/components/Modal/Modal.vue';
 import InfoBlock from '@/components/InfoBlock.vue';
-import Example from '../components/Example.vue';
   
   @Options({
     components: {
@@ -35,7 +34,6 @@ import Example from '../components/Example.vue';
       Manufacture,
       Modal,
       InfoBlock,
-      Example,
       ModalOverHundred,
       ModalRobotCreated,
     },})
