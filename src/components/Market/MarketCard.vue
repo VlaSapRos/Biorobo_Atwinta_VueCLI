@@ -42,8 +42,6 @@ export default class MarketCard extends Vue{}
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
-    height: 286px;
     width: 236px;
   }
   .card__picture {

@@ -2,26 +2,29 @@
 .block
   span.rubric Склад
   .container
-    StockCard(
+    MyCard(
       :quantity='stock.biomechanism.quantity'
       title='Биомеханизм'
       :cost='stock.biomechanism.costOfSale'
       v-on:sell="$store.dispatch('sellBiomechanism'); (stock.biomechanism.quantity < 4) ? unSelectBiomechanismStock(stock.biomechanism.quantity) : null"
       v-on:overHundred="$emit('overHundred')"
+      cardType="stock"
     )
-    StockCard(
+    MyCard(
       :quantity='stock.processor.quantity'
       title='Процессор'
       :cost='stock.processor.costOfSale'
       v-on:sell="$store.dispatch('sellProcessor'); (stock.processor.quantity < 4) ? unSelectProcessorStock(stock.processor.quantity) : null"
       v-on:overHundred="$emit('overHundred')"
+      cardType="stock"
     )
-    StockCard(
+    MyCard(
       :quantity='stock.soul.quantity'
       title='Душа'
       :cost='stock.soul.costOfSale'
       v-on:sell="$store.dispatch('sellSoul'); (stock.soul.quantity < 4) ? unSelectSoulStock(stock.soul.quantity) : null"
       v-on:overHundred="$emit('overHundred')"
+      cardType="stock"
     )
 </template>
 
@@ -30,6 +33,7 @@ import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
 import StockCard from "./StockCard.vue";
+import MyCard from "@/components/MyCard.vue";
 
 @Options({
   emits:[
@@ -41,7 +45,8 @@ import StockCard from "./StockCard.vue";
     ]),
   },
   components: {
-    StockCard
+    StockCard,
+    MyCard
   },
 })
 export default class Stock extends Vue {

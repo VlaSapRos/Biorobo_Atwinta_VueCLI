@@ -53,9 +53,10 @@ export default class StockCard extends Vue {}
   }
 
   .card {
+    position: relative;
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 236px;
   }
