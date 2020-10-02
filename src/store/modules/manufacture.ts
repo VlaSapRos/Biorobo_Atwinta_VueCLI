@@ -13,7 +13,6 @@ export default {
   mutations: {
     createRobot (state:any) {
       state.robotIsCreated = true;
-      console.log(state.robotIsCreated);
     },
     selectedBiomechanism (state:any, index:number) {
       state.flags.biomechanism[index] = true;

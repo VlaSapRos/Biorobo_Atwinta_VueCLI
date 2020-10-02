@@ -4,12 +4,14 @@
     img.card__img(:src='pic')
   span.card__title {{ title }}
   span.card__subtitle Стоимость: {{ cost }} монет
-  button( :disabled='wallet.amountCoins < cost' class='button-install' v-on:click="$emit('buy')" ) Установить
+  MyButton( skin='button-install' value='Установить' :reasonForDisabled='wallet.amountCoins < cost' v-on:press="$emit('buy')" )
 </template>
 
 <script>
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
+
+import MyButton from '@/components/MyButton.vue';
 
 @Options({
   emits:[
@@ -26,6 +28,9 @@ import { mapState } from 'vuex';
       'wallet',
     ]),
   },
+  components: {
+    MyButton,
+  }
 })
 export default class MarketCard extends Vue{}
 </script>

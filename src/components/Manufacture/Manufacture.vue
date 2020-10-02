@@ -5,7 +5,7 @@
     .container_column.container_column_Manufacture
       ManufactureRadio(title='Тип биоробота:' name='type' value1 = 'FrontEnd' value2 = 'Design' v-on:roboTypeChange='roboType.type=$event')
       ManufactureRadio(title='Стабилизатор:' name='gender' value1 = 'Male' value2 = 'Female' v-on:roboTypeChange='roboType.stabilizer=$event')
-      button.button-create(:class="{active: isBeCreate}" :disabled='!isBeCreate' @click="createRobot()") Произвести за 10 монет
+      MyButton( skin='button-create' v-on:press="createRobot()" :reasonForDisabled="!isBeCreate" value='Произвести за 10 монет' )
     .container_column.container_column_manufacture(style='padding-top:9px')
       ManufactureCheck( count='4' isBiomechanism='true' )
       ManufactureCheck( count='4' isProcessor='true' )
@@ -22,6 +22,7 @@ import { mapState } from 'vuex';
 import ManufactureRadio from './ManufactureRadio.vue';
 import ManufactureCheck from './ManufactureCheck.vue';
 import ManufactureSilhouette from './ManufactureSilhouette.vue';
+import MyButton from '@/components/MyButton.vue';
 
 @Options({
   emits:[
@@ -31,6 +32,7 @@ import ManufactureSilhouette from './ManufactureSilhouette.vue';
     ManufactureRadio,
     ManufactureCheck,
     ManufactureSilhouette,
+    MyButton,
   },
   computed: {
     ...mapState([

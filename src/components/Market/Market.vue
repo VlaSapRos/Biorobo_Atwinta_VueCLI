@@ -26,7 +26,7 @@
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-import MarketCard from './MarketCard.vue';
+import MarketCard from '@/components/Market/MarketCard.vue';
 
 @Options({
   computed:{
