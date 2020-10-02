@@ -5,14 +5,14 @@
   span.card__title {{ title }}
   span.card__subtitle( v-bind:class="{card__subtitle_StockCard: (cardType == 'stock')}" ) Стоимость: {{ cost }} монет
   span.card__quantity( v-if="cardType == 'stock'") {{ quantity }} шт
-  MyButton( :skin='buttonSkin' :value='buttonValue' :reasonForDisabled='buttonReasonForDisabled' v-on:press="clicked(cardType)" )
+  Button( :skin='buttonSkin' :value='buttonValue' :reasonForDisabled='buttonReasonForDisabled' v-on:press="clicked(cardType)" )
 </template>
 
 <script>
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-import MyButton from '@/components/ReusableItems/MyButton.vue';
+import Button from '@/components/Uikit/Button.vue';
 
 @Options({
   emits:[
@@ -45,10 +45,10 @@ import MyButton from '@/components/ReusableItems/MyButton.vue';
     },
   },
   components: {
-    MyButton,
+    Button,
   }
 })
-export default class MyCard extends Vue {
+export default class Card extends Vue {
   clicked(type){
     if(type == 'market') {
       this.$emit('buy')

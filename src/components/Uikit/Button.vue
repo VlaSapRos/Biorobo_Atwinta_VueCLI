@@ -18,7 +18,7 @@ import { Vue, Options } from 'vue-class-component';
     reasonForDisabled:'',
   },
 })
-export default class MyButton extends Vue {}
+export default class Button extends Vue {}
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
 .block
   span.rubric Склад
   .container
-    MyCard(
+    Card(
       :quantity='stock.biomechanism.quantity'
       title='Биомеханизм'
       :cost='stock.biomechanism.costOfSale'
@@ -10,7 +10,7 @@
       v-on:overHundred="$emit('overHundred')"
       cardType="stock"
     )
-    MyCard(
+    Card(
       :quantity='stock.processor.quantity'
       title='Процессор'
       :cost='stock.processor.costOfSale'
@@ -18,7 +18,7 @@
       v-on:overHundred="$emit('overHundred')"
       cardType="stock"
     )
-    MyCard(
+    Card(
       :quantity='stock.soul.quantity'
       title='Душа'
       :cost='stock.soul.costOfSale'
@@ -32,7 +32,7 @@
 import { Vue, Options } from 'vue-class-component';
 import { mapState } from 'vuex';
 
-import MyCard from "@/components/ReusableItems/MyCard.vue";
+import Card from "@/components/Uikit/Card.vue";
 
 @Options({
   emits:[
@@ -44,7 +44,7 @@ import MyCard from "@/components/ReusableItems/MyCard.vue";
     ]),
   },
   components: {
-    MyCard
+    Card
   },
 })
 export default class Stock extends Vue {

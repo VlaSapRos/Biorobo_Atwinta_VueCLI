@@ -1,0 +1,41 @@
+.modal__title {
+  position: absolute;
+  top: 33px;
+  left: 106px;
+  width: 320px;
+  height: 80px;
+  font-family: 'Montserrat_regular';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;  
+  line-height: 40px;
+  color: #212529;
+}
+.modal__subtitle {
+  position: absolute;
+  left: 106px;
+  top: 33+80+23px;
+  width: 306px;
+  height: 32px;
+  font-family: 'Montserrat_regular';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  color: #4C5865;
+}
+.modal__subtitle_two {
+  top: 168px;
+}
+.modal__close-button {
+  position: absolute;
+  top: 8px;
+  left: 456px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  width: 32px;
+  height: 32px;
+  border:none;
+}
