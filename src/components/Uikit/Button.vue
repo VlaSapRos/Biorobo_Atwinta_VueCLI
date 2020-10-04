@@ -6,19 +6,14 @@ div
 </template> 
 
 <script lang='ts'>
-import { Vue, Options } from 'vue-class-component';
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 
-@Options({
-  emits:[
-    'press'
-  ],
-  props:{
-    skin:'',
-    value:'',
-    reasonForDisabled:'',
-  },
-})
-export default class Button extends Vue {}
+@Component
+export default class Button extends Vue {
+  @Prop(String) readonly skin: ''
+  @Prop(String) readonly value: ''
+  @Prop(Boolean) readonly reasonForDisabled: true
+}
 </script>
 
 <style lang="scss" scoped>

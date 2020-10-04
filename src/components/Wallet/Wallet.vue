@@ -11,16 +11,13 @@
     label.wallet__label-checkbox-text(for='checkbox') Цыганить по 5 монет
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
 import WalletCoin from './WalletCoin.vue';
 
-@Options({
-  emits:[
-    'overHundred'
-  ],
+@Component({
   components:{
      WalletCoin,
   },
@@ -28,31 +25,36 @@ import WalletCoin from './WalletCoin.vue';
     ...mapState ([
       'wallet',
     ]),
-    coinsDeclination() {
-      let coinsText = '';
-      let amount = this.wallet.amountCoins;
-      if (amount != 11 && amount != 12 && amount != 13 && amount != 14) {
-        switch (amount % 10) {
-          case 1 : coinsText = 'монета'; break;
-          case 2 :
-          case 3 :
-          case 4 : coinsText = 'монеты'; break;
-          default : coinsText = 'монет';
-        }
-      } else { coinsText = 'монет'; }
-      return coinsText;
-    },
+
   },
 })
 export default class Wallet extends Vue {
-  checked = false;
-  coins = [];
-  mounted() {
+  wallet: any
+  amountCoins: number
+  $store: any
+  $emit: any
+  checked = false as boolean;
+  coins = [] as Array<number>;
+  get coinsDeclination() {
+    let coinsText = '';
+    let amount = this.wallet.amountCoins;
+    if (amount != 11 && amount != 12 && amount != 13 && amount != 14) {
+      switch (amount % 10) {
+        case 1 : coinsText = 'монета'; break;
+        case 2 :
+        case 3 :
+        case 4 : coinsText = 'монеты'; break;
+        default : coinsText = 'монет';
+      }
+    } else { coinsText = 'монет'; }
+    return coinsText;
+  }
+  mounted() : void {
     for (let i=0; i<100; i++){
       this.coins[i]= i;
     }
   }
-  addCoins(checked) {
+  addCoins(checked) : void {
     if ((this.wallet.amountCoins + ((checked) ? 5 : 1)) <= 100 ) {
       this.$store.commit('addCoins',(checked) ? 5 : 1)
     } else {

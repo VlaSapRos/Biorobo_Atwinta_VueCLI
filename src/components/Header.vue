@@ -4,10 +4,10 @@
   a.button-create.button-scroll(href='/#manufacture') Произвести биоробота
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
-import { mapState } from 'vuex';
+<script lang='ts'>
+import { Vue, Component } from 'vue-property-decorator'
 
+@Component
 export default class Header extends Vue{}
 </script>
 

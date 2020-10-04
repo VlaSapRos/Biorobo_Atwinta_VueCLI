@@ -4,23 +4,11 @@
     slot
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
-
-
-@Options({
-  emits:[
-    'close'
-  ],
-  computed:{
-    ...mapState([
-      'isOverHundred',
-      'isRobotCreated',
-    ])
-  },
-})
+@Component
 export default class Modal extends Vue {}
 </script>
 

@@ -5,10 +5,10 @@
   img.infoblock__robots(src='img/robots/robotsHeader.svg')
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
-import { mapState } from 'vuex';
+<script lang='ts'>
+import { Vue, Component } from 'vue-property-decorator'
 
+@Component
 export default class InfoBlock extends Vue{};
 </script>
 

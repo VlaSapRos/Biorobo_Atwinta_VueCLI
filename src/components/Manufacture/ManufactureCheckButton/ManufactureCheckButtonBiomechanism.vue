@@ -1,13 +1,13 @@
 <template>
 <button
   class="checkbox"
-  v-bind:class='{ checkbox_active:( manufacture.flags.biomechanism[number-1] ) }'
-  @click="$store.commit((manufacture.flags.biomechanism[number-1]) ? 'unSelectedBiomechanism' : 'selectedBiomechanism',number-1)"
-  :disabled='+stock.biomechanism.quantity<+number'
+  :class='{ checkbox_active: manufacture.flags.biomechanism[number-1] }'
+  :disabled='+stock.biomechanism.quantity<number'
+  @click="$store.commit((manufacture.flags.biomechanism[number-1]) ? 'unSelectedBiomechanism' : 'selectedBiomechanism',number-1);"
 >
   <svg 
     class='fill-gray' 
-    v-bind:class='{"fill-white":+stock.biomechanism.quantity>=+number, "fill-orange":(manufacture.flags.biomechanism[number-1] && +stock.biomechanism.quantity>=+number)}'
+    v-bind:class='{"fill-white":+stock.biomechanism.quantity>=+number, "fill-orange":(manufacture.flags.biomechanism[number-1] && (+stock.biomechanism.quantity>=+number) )}'
     width="36" 
     height="24" 
     viewBox="0 0 36 24" 
@@ -22,21 +22,21 @@
 </button>
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop} from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
-@Options({
+@Component({
   computed: {
     ...mapState([
       'stock',
       'manufacture'
     ]),
   },
-  props: {
-    number: 0,
-  },
 })
-    
-export default class ManufactureCheckButtonBiomechanism extends Vue {}
+export default class ManufactureCheckButtonBiomechanism extends Vue {
+  stock: any
+  manufacture: any
+  @Prop(Number) readonly number: number
+}
 </script>

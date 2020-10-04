@@ -1,19 +1,20 @@
 <template lang="pug">
 .main__container
-  Modal( v-if="modalVisibility[0]" ) 
-    ModalOverHundred( v-on:close="modalVisibility[0]=false; $store.commit('reset')" )
-  Modal( v-if="modalVisibility[1]" ) 
-    ModalRobotCreated( v-on:close="modalVisibility[1]=false; $store.commit('reset')" )
+  Modal( v-if="modalOverHundredVisibility" ) 
+    ModalOverHundred( v-on:close="$store.commit('modalOverHundredVisibilityChange', false)" )
+  Modal( v-if="modalRobotCreatedVisibility" ) 
+    ModalRobotCreated( v-on:close="$store.commit('modalRobotCreatedVisibilityChange', false); $store.commit('reset')" )
   Header
   InfoBlock
-  Wallet( v-on:overHundred="showModal('0')" )
+  Wallet( v-on:overHundred="$store.commit('modalOverHundredVisibilityChange', true)" )
   Market
-  Stock( v-on:overHundred="showModal('0')" )
-  Manufacture(v-on:robotCreated="showModal('1')")  
+  Stock( v-on:overHundred="$store.commit('modalOverHundredVisibilityChange', true)" )
+  Manufacture(v-on:robotCreated="$store.commit('modalRobotCreatedVisibilityChange', true)")  
 </template>
 
 <script> 
-import { Vue, Options } from 'vue-class-component';
+import { Component, Vue } from 'vue-property-decorator';
+import { mapState } from 'vuex';
 
 import ModalOverHundred from '@/components/Modal/ModalOverHundred.vue';
 import ModalRobotCreated from '@/components/Modal/ModalRobotCreated.vue';
@@ -25,7 +26,13 @@ import Manufacture from '@/components/Manufacture/Manufacture.vue';
 import Modal from '@/components/Modal/Modal.vue';
 import InfoBlock from '@/components/InfoBlock.vue';
   
-  @Options({
+  @Component({
+    computed: {
+      ...mapState([
+        'modalOverHundredVisibility',
+        'modalRobotCreatedVisibility',
+      ])
+    },
     components: {
       Header,
       Wallet,
@@ -36,25 +43,18 @@ import InfoBlock from '@/components/InfoBlock.vue';
       InfoBlock,
       ModalOverHundred,
       ModalRobotCreated,
-    },})
-    
-  export default class Main extends Vue{
-    modalVisibility = [ false, false ];
-    modalProps = '';
-
-    showModal(i){
-      this.modalVisibility[i] = true;
-    }
-  }
+    },  
+  })
+  export default class Main extends Vue{}
 
 </script>
 
 <style lang="scss" scoped>
   .main__container {
     width: 1016px;
+    height: 2204px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 2204px;
   }
 </style>

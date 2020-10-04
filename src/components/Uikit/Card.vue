@@ -8,25 +8,13 @@
   Button( :skin='buttonSkin' :value='buttonValue' :reasonForDisabled='buttonReasonForDisabled' v-on:press="clicked(cardType)" )
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop} from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
 import Button from '@/components/Uikit/Button.vue';
 
-@Options({
-  emits:[
-    'overHundred',
-    'sell',
-    'buy',
-  ],
-  props: {
-    cardType: '',
-    pic: null,
-    quantity: '',
-    title: '',
-    cost: 0,
-  },
+@Component({
   computed: {
     ...mapState([
       'wallet',
@@ -49,6 +37,17 @@ import Button from '@/components/Uikit/Button.vue';
   }
 })
 export default class Card extends Vue {
+  wallet: any
+  amountCoins: number
+  $store: any
+  $emit: any
+  
+  @Prop(String) readonly cardType: ''
+  @Prop(String) readonly pic: ''
+  @Prop(Number) readonly quantity: 0
+  @Prop(String) readonly title: ''
+  @Prop(Number) readonly cost: 0
+
   clicked(type){
     if(type == 'market') {
       this.$emit('buy')

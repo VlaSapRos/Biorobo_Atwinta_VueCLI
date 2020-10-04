@@ -3,20 +3,20 @@
   span.rubric.rubric_manufacture Производство
   .container.container_manufacture
     .container_column.container_column_Manufacture
-      ManufactureRadio(title='Тип биоробота:' name='type' value1 = 'FrontEnd' value2 = 'Design' v-on:roboTypeChange='roboType.type=$event')
-      ManufactureRadio(title='Стабилизатор:' name='gender' value1 = 'Male' value2 = 'Female' v-on:roboTypeChange='roboType.stabilizer=$event')
+      ManufactureRadio(title='Тип биоробота:' name='type' value1 = 'FrontEnd' value2 = 'Design' v-on:roboTypeChange="$store.commit('changeRoboType',$event)")
+      ManufactureRadio(title='Стабилизатор:' name='gender' value1 = 'Male' value2 = 'Female' v-on:roboTypeChange="$store.commit('changeRoboStabilizer',$event)")
       Button( skin='button-create' v-on:press="createRobot()" :reasonForDisabled="!isBeCreate" value='Произвести за 10 монет' )
     .container_column.container_column_manufacture(style='padding-top:9px')
-      ManufactureCheck( count='4' isBiomechanism='true' )
-      ManufactureCheck( count='4' isProcessor='true' )
-      ManufactureCheck( count='1' isSoul='true' )
+      ManufactureCheck( :count='4' :isBiomechanism='true' )
+      ManufactureCheck( :count='4' :isProcessor='true' )
+      ManufactureCheck( :count='1' :isSoul='true' )
       .manufacture__not-enough {{ notEnough }}
     .container_column.container_column_manufacture
-      ManufactureSilhouette(:stabilizer='roboType.stabilizer' :type='roboType.type' :isBeCreate='isBeCreate')
+      ManufactureSilhouette(:isBeCreate='isBeCreate')
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { mapState } from 'vuex';
   
 import ManufactureRadio from './ManufactureRadio.vue';
@@ -24,10 +24,7 @@ import ManufactureCheck from './ManufactureCheck.vue';
 import ManufactureSilhouette from './ManufactureSilhouette.vue';
 import Button from '@/components/Uikit/Button.vue';
 
-@Options({
-  emits:[
-    'robotCreated',
-  ],
+@Component({
   components: {
     ManufactureRadio,
     ManufactureCheck,
@@ -134,10 +131,11 @@ import Button from '@/components/Uikit/Button.vue';
   },
 })
 export default class Manufacture extends Vue {
-  roboType = {
-    stabilizer: 'Male',
-    type: 'FrontEnd',
-  }
+  wallet: any
+  stock: any
+  manufacture: any
+  $emit: any
+  $store: any
   createRobot() {
     if(this.stock.biomechanism.need <= this.stock.biomechanism.quantity
     && this.stock.processor.need <= this.stock.processor.quantity

@@ -25,13 +25,13 @@
     )
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
 import Card from "@/components/Uikit/Card.vue";
 
-@Options({
+@Component({
   computed:{
     ...mapState([ 
       'stock',

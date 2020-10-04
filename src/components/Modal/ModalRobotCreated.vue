@@ -7,13 +7,9 @@ div
   span.modal__subtitle.modal__subtitle_two Вы произвели биоробота
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 
-@Options({
-  emits:[
-    'close'
-  ],
-})
+@Component
 export default class ModalRobotCreated extends Vue {}
 </script>

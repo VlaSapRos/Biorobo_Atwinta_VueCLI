@@ -4,32 +4,26 @@
   .container.container_manufactureradio
     .manufactureradio__container
       .manufactureradio__wrapper
-        input.manufactureradio__input(checked type='radio' :id="name+'_1'" :name='name' v-model='picked' :value='value1' v-on:change="$emit('roboTypeChange',picked)")
+        input.manufactureradio__input(type='radio' :id="name+'_1'" :name='name' v-model='picked' :value='value1' :change="$emit('roboTypeChange',picked)")
         label.manufactureradio__label(:for="name+'_1'")
       p.manufactureradio__text {{ value1 }}
     .manufactureradio__container
       .manufactureradio__wrapper
-        input.manufactureradio__input(type='radio' :id="name+'_2'" :name='name' v-model='picked' :value='value2' v-on:change="$emit('roboTypeChange',picked)")
+        input.manufactureradio__input(type='radio' :id="name+'_2'" :name='name' v-model='picked' :value='value2' :change="$emit('roboTypeChange',picked)")
         label.manufactureradio__label(:for="name+'_2'")
       p.manufactureradio__text {{ value2 }}
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-@Options({
-  emits:[
-    'roboTypeChange'
-  ],
-  props: {
-    title: '',
-    name: '',
-    value1: '',
-    value2: '',
-  },
-})
+@Component
 export default class ManufactureRadio extends Vue {
-  picked = this.value1
+  @Prop(String) readonly title: ''
+  @Prop(String) readonly name: ''
+  @Prop(String) readonly value1: ''
+  @Prop(String) readonly value2: ''
+  picked: string = this.value1
 }
 </script>
 

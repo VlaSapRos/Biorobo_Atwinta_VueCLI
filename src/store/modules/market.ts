@@ -1,5 +1,3 @@
-import { mapState } from 'vuex';
-
 export default {
   actions: {
     buyBiomechanism({rootState,commit}:any) { // Market

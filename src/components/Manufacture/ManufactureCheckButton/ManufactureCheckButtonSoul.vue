@@ -32,21 +32,22 @@
 </button>
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
-@Options({
+@Component({
   computed: {
     ...mapState([
       'stock',
       'manufacture'
     ]),
   },
-  props: {
-    number: 0,
-  },
 })
     
-export default class ManufactureCheckButtonSoul extends Vue {}
+export default class ManufactureCheckButtonSoul extends Vue {
+  stock: any
+  manufacture: any
+  @Prop(Number) readonly number: number
+}
 </script>

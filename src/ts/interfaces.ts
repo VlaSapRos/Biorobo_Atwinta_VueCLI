@@ -5,9 +5,12 @@ interface IDetails {
   readonly need: number,
 }
 interface IFlags{
-  biomechanism: Array<Boolean>
-  processor: Array<Boolean>
-  soul: Array<Boolean>
+  biomechanism: Array<boolean>
+  processor: Array<boolean>
+  soul: Array<boolean>
 }
-
-export {IDetails, IFlags};
+interface IRoboType{
+  stabilizer: string
+  type: string
+}
+export {IDetails, IFlags, IRoboType};

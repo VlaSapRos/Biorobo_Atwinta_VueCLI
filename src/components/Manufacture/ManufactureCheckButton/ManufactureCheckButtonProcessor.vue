@@ -1,7 +1,7 @@
 <template>
 <button 
   class="checkbox"
-  v-bind:class='{ checkbox_active:( manufacture.flags.processor[number-1] ) }'
+  :class='{ checkbox_active:( manufacture.flags.processor[number-1] ) }'
   @click="$store.commit((manufacture.flags.processor[number-1]) ? 'unSelectedProcessor' : 'selectedProcessor',number-1)"
   :disabled='+stock.processor.quantity<+number'
 >
@@ -24,21 +24,22 @@
 </button>
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
-@Options({
+@Component({
   computed: {
     ...mapState([
       'stock',
       'manufacture'
     ]),
   },
-  props: {
-    number: 0,
-  },
 })
     
-export default class ManufactureCheckButtonProcessor extends Vue {}
+export default class ManufactureCheckButtonProcessor extends Vue {
+  stock: any
+  manufacture: any
+  @Prop(Number) readonly number: number
+}
 </script>

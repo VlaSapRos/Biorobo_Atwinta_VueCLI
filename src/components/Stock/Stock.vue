@@ -28,16 +28,13 @@
     )
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
 import Card from "@/components/Uikit/Card.vue";
 
-@Options({
-  emits:[
-    'overHundred'
-  ],
+@Component({
   computed: {
     ...mapState([
       'stock',
@@ -48,6 +45,8 @@ import Card from "@/components/Uikit/Card.vue";
   },
 })
 export default class Stock extends Vue {
+  stock: any
+  $store: any
   unSelectBiomechanismStock(quantity) {
     let difference = 4 - quantity;
     switch (difference) {

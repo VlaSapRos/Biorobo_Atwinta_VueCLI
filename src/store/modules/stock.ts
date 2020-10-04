@@ -1,4 +1,4 @@
-import {IDetails} from '../../ts/interfaces'
+import {IDetails} from '@/ts/interfaces'
 
 export default {
   state: {

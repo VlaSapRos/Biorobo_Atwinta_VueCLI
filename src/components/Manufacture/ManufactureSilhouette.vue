@@ -2,22 +2,17 @@
 img(:src="'img/robots/' + derictory + '/'+ picture + '.svg'")
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { mapState } from 'vuex';
 
-@Options({
-  props: {
-    stabilizer:'',
-    type:'',
-    isBeCreate:'',
-  },
+@Component({
   computed: {
     ...mapState([
       'manufacture',
     ]),
     picture: function() {
-      switch (this.stabilizer + this.type) {
+      switch (this.manufacture.roboType.stabilizer + this.manufacture.roboType.type) {
         case ('MaleFrontEnd'): return 'maleFrontend'; break;
         case ('MaleDesign'): return 'maleDesign'; break;
         case ('FemaleFrontEnd'): return 'famaleFrontend'; break;
@@ -32,5 +27,9 @@ import { mapState } from 'vuex';
     }
   },
 })
-export default class ManufactureSilhouette extends Vue {}
+export default class ManufactureSilhouette extends Vue {
+  @Prop(String) readonly stabilizer: ''
+  @Prop(String) readonly type: ''
+  @Prop(Boolean) readonly isBeCreate: false
+}
 </script>

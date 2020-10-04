@@ -8,14 +8,10 @@ div
   span.modal__subtitle.modal__subtitle_two более 100 монет biorobo
 </template>
 
-<script>
-import { Vue, Options } from 'vue-class-component';
+<script lang='ts'>
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 
-@Options({
-  emits:[
-    'close'
-  ],
-})
+@Component
 export default class ModalOverHundred extends Vue {}
 </script>
 
